@@ -1,4 +1,4 @@
-<pre name="code" class="cpp">#include<iostream>
+#include<iostream>
 using namespace std;
 
 
@@ -9,10 +9,10 @@ enum Direction
 class MapSite{
     public:
     	MapSite()
-		{
-			cout<<endl;
-		}
-		bool flag;//0 is wall;1 is door in wall
+	{
+		cout<<endl;
+	}
+	bool flag;//0 is wall;1 is door in wall
     	virtual void Enter() = 0;
 
 };
