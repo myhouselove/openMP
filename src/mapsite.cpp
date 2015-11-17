@@ -9,10 +9,10 @@ enum Direction
 class MapSite{
     public:
     	MapSite()
-	{
-		cout<<endl;
-	}
-	bool flag;//0 is wall;1 is door in wall
+		{
+			cout<<endl;
+		}
+		bool flag;//0 is wall;1 is door in wall
     	virtual void Enter() = 0;
 
 };
@@ -64,7 +64,7 @@ class Door : public MapSite{
 	public:
 		Door(Room* = 0,Room* = 0){
 		 this->flag = 1;
-		 cout<<""<<endl;
+		 _isOpen = 0;
 		}
 			
 		virtual void Enter(){
@@ -79,8 +79,10 @@ class Door : public MapSite{
 class Maze{
 	public:
 		 Maze(){
-		 cout<<""<<endl;
-		 
+		 numberRo = 0;
+		 int i = 100;
+		 while(i--)
+		 	this->rSet[i] = new Room(-1);
  		}
 		 
 		 void AddRoom(Room*);
@@ -93,13 +95,15 @@ class Maze{
 };
 void Maze::AddRoom(Room* r1)
 {
-	if(this->rSet[r1->getRoomNum()] == NULL) 
+	if(this->rSet[r1->getRoomNum()]->getRoomNum() == -1) 
 	{
 		this->rSet[r1->getRoomNum()] = r1;
+		this->numberRo++;
+		cout<<"Add room success!"<<endl;
 	}
 	else
 	{
-		cout<<"your room number have existed!"<<endl;
+		cout<<"your room number have existed!"<<this->rSet[r1->getRoomNum()]<<endl;
 	}
 }
 Room* Maze::getRoomFromNum(int rn)  const
@@ -119,7 +123,7 @@ class MazeFactory{
     virtual Door* MakeDoor(Room* r1,Room* r2) const
 	{return new Door(r1,r2);}
 };
-/*
+
 class MazeGame{
 	public:
 		MazeGame();
@@ -127,10 +131,6 @@ class MazeGame{
 		Maze* CreateMaze(MazeFactory);
 };
 
-void Maze::AddRoom(Room* r)
-{
-	cout<<""<<endl;
-}
 
 Maze* MazeGame::CreateMaze(MazeFactory factory)
 {
@@ -153,9 +153,10 @@ Maze* MazeGame::CreateMaze(MazeFactory factory)
 	r2->setSide(West,aDoor);
 	
 	return aMaze;
-}*/
+}
 int main()
 {	
+/*	Maze *maze = new Maze;
 	Wall *w1 = new Wall;
 	
 	Room *r1 = new Room(12);
@@ -165,6 +166,10 @@ int main()
 	r1->setSide(North,w1);
 	r1->setSide(South,do1);
 	
+	
+	maze->AddRoom(r1);
+	maze->AddRoom(r2);
+	
 	if(r1->GetSide(North)->flag == 0)
 		cout<<"it is the wall!"<<endl;
 	if(r1->GetSide(South)->flag == 1)
@@ -172,6 +177,9 @@ int main()
 	
 	cout<<"the room1number is "<<r1->getRoomNum()<<endl;
 	cout<<"the room2number is "<<r2->getRoomNum()<<endl;
+*/
+
+	
     cout<<"hello world!"<<endl;
     return 0;
 }
